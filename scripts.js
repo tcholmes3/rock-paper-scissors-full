@@ -2,6 +2,7 @@
     const score = document.querySelector(".score"),
         result = document.querySelector(".result"),
         choices = document.querySelectorAll(".choice");
+
     let userScore = 0,
         botScore = 0;
 
@@ -17,23 +18,65 @@
         const robotChoice = botChoice();
         if (e.target.id === robotChoice) {
             result.textContent = `${e.target.id} and ${robotChoice}. It's a tie!`;
+            score.querySelector(
+                "#display-user"
+            ).innerHTML = `<img src="imgs/${e.target.id}.png" alt=${e.target.id} id=${e.target.id} />`;
+            score.querySelector(
+                "#display-bot"
+            ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
         } else if (e.target.id === "paper" && robotChoice === "rock") {
             result.textContent = `Paper covers rock. You win!`;
+            score.querySelector(
+                "#display-user"
+            ).innerHTML = `<img src="imgs/${e.target.id}.png" alt=${e.target.id} id=${e.target.id} />`;
+            score.querySelector(
+                "#display-bot"
+            ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
             userScore++;
         } else if (e.target.id === "paper" && robotChoice === "scissors") {
             result.textContent = `Scissors cuts paper. You lose!`;
+            score.querySelector(
+                "#display-user"
+            ).innerHTML = `<img src="imgs/${e.target.id}.png" alt=${e.target.id} id=${e.target.id} />`;
+            score.querySelector(
+                "#display-bot"
+            ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
             botScore++;
         } else if (e.target.id === "rock" && robotChoice === "paper") {
             result.textContent = `Paper covers rock. You lose!`;
+            score.querySelector(
+                "#display-user"
+            ).innerHTML = `<img src="imgs/${e.target.id}.png" alt=${e.target.id} id=${e.target.id} />`;
+            score.querySelector(
+                "#display-bot"
+            ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
             botScore++;
         } else if (e.target.id === "rock" && robotChoice === "scissors") {
             result.textContent = `Rock crushes scissors. You win!`;
+            score.querySelector(
+                "#display-user"
+            ).innerHTML = `<img src="imgs/${e.target.id}.png" alt=${e.target.id} id=${e.target.id} />`;
+            score.querySelector(
+                "#display-bot"
+            ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
             userScore++;
         } else if (e.target.id === "scissors" && robotChoice === "rock") {
             result.textContent = `Rock crushes scissors. You lose!`;
+            score.querySelector(
+                "#display-user"
+            ).innerHTML = `<img src="imgs/${e.target.id}.png" alt=${e.target.id} id=${e.target.id} />`;
+            score.querySelector(
+                "#display-bot"
+            ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
             botScore++;
         } else if (e.target.id === "scissors" && robotChoice === "paper") {
             result.textContent = `Scissors cuts paper. You win!`;
+            score.querySelector(
+                "#display-user"
+            ).innerHTML = `<img src="imgs/${e.target.id}.png" alt=${e.target.id} id=${e.target.id} />`;
+            score.querySelector(
+                "#display-bot"
+            ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
             userScore++;
         }
         score.querySelector("#user-score").textContent = userScore;
