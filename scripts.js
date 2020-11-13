@@ -20,10 +20,29 @@
         score.querySelector(
             "#display-bot"
         ).innerHTML = `<img src="imgs/${robotChoice}.png" alt=${robotChoice} id=${robotChoice} />`;
+        score.querySelector("#user-score").textContent = userScore;
+        score.querySelector("#bot-score").textContent = botScore;
+    };
+
+    const endGame = (x) => {
+        if (x === "win") {
+            result.innerHTML =
+                "<span>You are <span style = 'color: rgb(11, 206, 11)'>victorious</span>!</span>";
+        } else {
+            result.innerHTML =
+                "<span>You have been <span style = 'color:red'>defeated</span>!</span>";
+        }
+        restart = document.createElement("div");
+        restart.textContent = `Play Again?`;
+        restart.classList.add("btn-restart");
+        result.insertAdjacentElement("beforebegin", restart);
+        choices.forEach((choice) => {
+            choice.removeEventListener("click", game);
+        });
+        restart.addEventListener("click", () => location.reload());
     };
 
     const game = (e) => {
-        console.log(e.target.id);
         const robotChoice = botChoice();
         if (e.target.id === robotChoice) {
             result.textContent = `${e.target.id} and ${robotChoice}. It's a tie!`;
@@ -47,15 +66,8 @@
             userScore++;
         }
         displayResults(e.target.id, robotChoice);
-        score.querySelector("#user-score").textContent = userScore;
-        score.querySelector("#bot-score").textContent = botScore;
-        userScore >= 5 ?
-            (result.innerHTML =
-                "<span>You are <span style = 'color:green'>victorious</span>!</span>") :
-            botScore >= 5 ?
-            (result.innerHTML =
-                "<span>You have been <span style = 'color:red'>defeated</span>!</span>") :
-            false;
+
+        userScore >= 5 ? endGame("win") : botScore >= 5 ? endGame("lose") : false;
     };
 
     choices.forEach((choice) => choice.addEventListener("click", game));
